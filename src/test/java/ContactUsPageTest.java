@@ -6,7 +6,7 @@ import pageObjects.businessObjects.ProductPO;
 public class ContactUsPageTest extends BaseTest {
 
     @Test(description = "Check that 'Contact us' form can be submitted only when all fields are filled")
-    public void verifyContactUsWithAllFilledField() {
+    public void verifyContactUsWithAllFilledFields() {
         new HomeBO()
                 .proceedToHomePage()
                 .proceedToContactUsPage();
@@ -14,6 +14,16 @@ public class ContactUsPageTest extends BaseTest {
                 .verifyContactsUsIsVisible();
         new ContactUsBO()
                 .fillAllInformation()
-                .verifySendIsEnable();
+                .verifyStatusSendButtonIfAllFieldFilled();
+    }
+
+    @Test(description = "Check that 'Contact us' form can be submitted only when all fields are filled")
+    public void verifyContactUsWithSomeFilledField() {
+        new HomeBO()
+                .proceedToHomePage()
+                .proceedToContactUsPage();
+        new ContactUsBO()
+                .verifyContactsUsIsVisible();
+        new ContactUsBO().verifySendButtonWithEmptyFieldComment();
     }
 }

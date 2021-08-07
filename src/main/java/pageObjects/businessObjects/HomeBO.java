@@ -1,10 +1,14 @@
 package pageObjects.businessObjects;
 
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.*;
 
+import java.util.List;
+
 public class HomeBO {
     private HomePage homePage;
+    private SignInPage signInPage;
 
     public HomeBO() {
         homePage = new HomePage();
@@ -19,7 +23,7 @@ public class HomeBO {
 
     public HomeBO proceedToHomePageAfterClickLogo() {
         homePage.proceedToHomePage()
-               .clickCookiesDismiss()
+                .clickCookiesDismiss()
                 .clickToLogoElement();
         return this;
     }
@@ -29,14 +33,14 @@ public class HomeBO {
                 "Logo is not visible");
     }
 
-    public SignInPage proceedToSignInPage(){
+    public SignInPage proceedToSignInPage() {
         homePage.scrollToMyAccount()
                 .clickSignIn()
-              ;
+        ;
         return new SignInPage();
     }
 
-    public OrderPage addFeaturedItemToCard(){
+    public OrderPage addFeaturedItemToCard() {
         homePage.scrollToAddToCart()
                 .clickAddToCart()
                 .scrollToShoppingCartOnHomePage()
@@ -44,15 +48,20 @@ public class HomeBO {
         return new OrderPage();
     }
 
-    public ProductPage proceedToProductPage(){
+    public ProductPage proceedToProductPage() {
         homePage
                 .clickToProducts()
                 .clickHandBugs();
         return new ProductPage();
     }
 
-    public ContactUsPage proceedToContactUsPage(){
-        homePage.clickContactUsButton()        ;
+    public ContactUsPage proceedToContactUsPage() {
+        homePage.clickContactUsButton();
         return new ContactUsPage();
+    }
+
+    public List<WebElement> checkLinks() {
+        return homePage.getTextsAndLinksListBeforeSignIn();
+
     }
 }

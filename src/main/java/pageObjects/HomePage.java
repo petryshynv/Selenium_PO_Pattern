@@ -1,19 +1,23 @@
 package pageObjects;
 
+import consts.BusinessConfigs;
 import driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import static consts.BusinessConfigs.*;
 import static consts.BusinessConfigs.page.HOME_PAGE_URL;
 
 public class HomePage extends AbstractPage {
+    SignInPage signInPage;
 
     Actions actions = new Actions(DriverFactory.getDriver());
-
 
 
     private static final Logger LOG = Logger.getLogger(String.valueOf(HomePage.class));
@@ -37,6 +41,15 @@ public class HomePage extends AbstractPage {
 
     private final By contactUsElement = By.xpath("//a[@href='/shop/store/contactus.html']");
 
+    private final By signInLinkElement = By.xpath("//a[@href='/shop/customer/customLogon.html']");
+    private final By registerLinkElement = By.xpath("//a[@href='/shop/customer/registration.html']");
+    private final By myAccountLinkElement = By.xpath("//a[@href='/shop/customer/account.html']");
+    private final By logOutLinkElement = By.xpath("//a[@href='/shop/customer/logout']");
+    private final By getAllTextElementsFromFooter = By.xpath("//div[@class='footer-wrapper']//div[1]//ul[1]//a[text()]");
+    private final By getAllLinkFromFooter = By.xpath("//div[@class='footer-wrapper']//div[1]//ul[1]//a");
+    private final By inputEmail = By.xpath("//input[@id='signin_userName']");
+    private final By inputPassword = By.xpath("//input[@id='signin_password']");
+    private final By sign = By.xpath("//button[@id='genericLogin-button']");
 
 
     public HomePage proceedToHomePage() {
@@ -49,13 +62,13 @@ public class HomePage extends AbstractPage {
     public HomePage clickCookiesDismiss() {
         getElement(cookiesDismissElement).click();
         // Assert.assertTrue(isDisplayed(logoElement), "Logo Element is not visible");
-        LOG.info("Logo Element is clicked");
+        LOG.info("Cookies is clicked");
         return this;
     }
 
     public HomePage clickToLogoElement() {
         getElement(logoElement).click();
-       // Assert.assertTrue(isDisplayed(logoElement), "Logo Element is not visible");
+        // Assert.assertTrue(isDisplayed(logoElement), "Logo Element is not visible");
         LOG.info("Logo Element is clicked");
         return this;
     }
@@ -115,7 +128,7 @@ public class HomePage extends AbstractPage {
 //        System.out.println(isDisplayed(checkoutElement));
 ////        Select select = new Select(getElement(shoppingCartOnHomePageElement));
 ////        select.selectByVisibleText("Checkout");
-     // actions.moveToElement(getElement(checkoutElement)).click().build().perform();
+        // actions.moveToElement(getElement(checkoutElement)).click().build().perform();
 ////       getElement(checkoutElement).click();
 //        // Assert.assertTrue(isDisplayed(logoElement), "Logo Element is not visible");
         LOG.info("'Checkout' is clicked");
@@ -145,9 +158,20 @@ public class HomePage extends AbstractPage {
     }
 
 
+    public List<WebElement> getTextsAndLinksListBeforeSignIn() {
+        List<WebElement> linksListBeforeLogin = getElements(getAllLinkFromFooter);
+        System.out.println(linksListBeforeLogin);
+        actions.moveToElement(getElement(signInLinkElement)).click().build().perform();
+        getElement(inputEmail).sendKeys(userInputs.EMAIL.getInput());
+        getElement(inputPassword).sendKeys(userInputs.PASSWORD.getInput());
+        getElement(sign).click();
 
+        List<WebElement> linksListAfterLogin = getElements(getAllLinkFromFooter);
+        LOG.info("'Links on footer' are not clicked");
+        Assert.assertFalse(linksListBeforeLogin.equals(linksListAfterLogin), "Links on footer are not same");
 
-
+        return linksListBeforeLogin;
+    }
 
 
 }
