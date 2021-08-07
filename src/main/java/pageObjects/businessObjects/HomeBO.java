@@ -1,10 +1,7 @@
 package pageObjects.businessObjects;
 
 import org.testng.Assert;
-import pageObjects.HomePage;
-import pageObjects.OrderPage;
-import pageObjects.ProductPage;
-import pageObjects.SignInPage;
+import pageObjects.*;
 
 public class HomeBO {
     private HomePage homePage;
@@ -52,5 +49,10 @@ public class HomeBO {
                 .clickToProducts()
                 .clickHandBugs();
         return new ProductPage();
+    }
+
+    public ContactUsPage proceedToContactUsPage(){
+        homePage.clickContactUsButton()        ;
+        return new ContactUsPage();
     }
 }

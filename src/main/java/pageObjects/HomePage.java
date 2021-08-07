@@ -35,7 +35,7 @@ public class HomePage extends AbstractPage {
 
     private final By homeButtonElement = By.xpath("//a[@class='dropdown-toggle'][normalize-space()='Home']");
 
-
+    private final By contactUsElement = By.xpath("//a[@href='/shop/store/contactus.html']");
 
 
 
@@ -83,8 +83,6 @@ public class HomePage extends AbstractPage {
         LOG.info("'Sign In' is clicked");
         return this;
     }
-
-
 
     public HomePage scrollToAddToCart() {
         actions.moveToElement(getElement(featuredItemAddToCartElement));
@@ -139,12 +137,14 @@ public class HomePage extends AbstractPage {
         return new ProductPage();
     }
 
-//    public HomePage clickHomeButton() {
-//        getElement(homeButtonElement).click();
-//        // Assert.assertTrue(isDisplayed(logoElement), "Logo Element is not visible");
-//        LOG.info("'Home' is clicked");
-//        return this;
-//    }
+    public HomePage clickContactUsButton() {
+        actions.moveToElement(getElement(contactUsElement)).click().build().perform();
+        // Assert.assertTrue(isDisplayed(logoElement), "Logo Element is not visible");
+        LOG.info("'ContactUs' is clicked");
+        return this;
+    }
+
+
 
 
 
