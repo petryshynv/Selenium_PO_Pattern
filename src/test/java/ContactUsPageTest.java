@@ -1,7 +1,6 @@
 import org.testng.annotations.Test;
 import pageObjects.businessObjects.ContactUsBO;
 import pageObjects.businessObjects.HomeBO;
-import pageObjects.businessObjects.ProductPO;
 
 public class ContactUsPageTest extends BaseTest {
 
@@ -17,13 +16,14 @@ public class ContactUsPageTest extends BaseTest {
                 .verifyStatusSendButtonIfAllFieldFilled();
     }
 
-    @Test(description = "Check that 'Contact us' form can be submitted only when all fields are filled")
-    public void verifyContactUsWithSomeFilledField() {
+    @Test(description = "Check that 'Contact us' form can be submitted only when one field is empty")
+    public void verifyContactUsWithSomeEmptyField() {
         new HomeBO()
                 .proceedToHomePage()
                 .proceedToContactUsPage();
         new ContactUsBO()
                 .verifyContactsUsIsVisible();
-        new ContactUsBO().verifySendButtonWithEmptyFieldComment();
+        new ContactUsBO()
+                .verifySendButtonWithEmptyFieldComment();
     }
 }

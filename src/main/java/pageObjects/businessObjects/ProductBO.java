@@ -3,10 +3,10 @@ package pageObjects.businessObjects;
 import org.testng.Assert;
 import pageObjects.ProductPage;
 
-public class ProductPO {
-    private ProductPage productPage;
+public class ProductBO {
+    private final ProductPage productPage;
 
-    public ProductPO() {
+    public ProductBO() {
         productPage = new ProductPage();
     }
 

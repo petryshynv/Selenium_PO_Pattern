@@ -1,20 +1,9 @@
 package pageObjects;
 
-import driver.DriverFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class ContactUsPage extends AbstractPage {
-
-    Actions actions = new Actions(DriverFactory.getDriver());
 
     private static final Logger LOG = Logger.getLogger(String.valueOf(ContactUsPage.class));
 
@@ -56,26 +45,9 @@ public class ContactUsPage extends AbstractPage {
         return this;
     }
 
-//    public boolean isSendButtonEnable() {
-//        boolean enableButton = getElement(sendButton).isEnabled();
-//        Assert.assertTrue(enableButton, "'Send' is not enabled");
-//        LOG.info(String.format("'send' is enabled '%s'", enableButton));
-//        return enableButton;
-//    }
-
-//    public boolean isSendButtonDisable() {
-//        getElement(sendButton).;
-//        Assert.assertTrue(enableButton, "'Send' is not enabled");
-//        LOG.info(String.format("'send' is enabled '%s'", enableButton));
-//        return enableButton;
-//    }
-
     public boolean getStatusFromAttribute() {
-        boolean statusDisabled =getElement(sendButton).getAttribute("class").contains("disabled");
-        //System.out.println(s);
-        //LOG.info("Status 'disabled' is got");
-        LOG.info(String.format("Logo is visible '%s'", statusDisabled));
+        boolean statusDisabled = getElement(sendButton).getAttribute("class").contains("disabled");
+        LOG.info(String.format("Attribute checked '%s'", statusDisabled));
         return statusDisabled;
     }
-
 }

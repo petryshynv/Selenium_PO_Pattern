@@ -1,6 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.businessObjects.HomeBO;
+import pageObjects.businessObjects.MyAccountPageBO;
 import pageObjects.businessObjects.SignInBO;
 
 import static consts.BusinessConfigs.*;
@@ -11,7 +12,7 @@ import static consts.BusinessConfigs.userInputs.PASSWORD;
 
 public class SignPageTest extends BaseTest {
 
-    @Test(description = "Positive scenario")
+    @Test(description = "Login with correct email and password.")
     public void verifySignInPageWithCorrectInputs() {
         new HomeBO()
                 .proceedToHomePage()
@@ -20,11 +21,11 @@ public class SignPageTest extends BaseTest {
                 .verifyRegisteredCustomerIsVisible();
         new SignInBO()
                 .login(EMAIL.getInput(), PASSWORD.getInput());
-        new SignInBO()
+        new MyAccountPageBO()
                 .verifyMyAccountIsVisible();
     }
 
-    @Test(description = "Negative scenario")
+    @Test(description = "Login with correct invalid email")
     public void verifySignInPageWithIncorrectEmail() {
         new HomeBO()
                 .proceedToHomePage()
@@ -41,7 +42,7 @@ public class SignPageTest extends BaseTest {
     public void test() {
         new HomeBO()
                 .proceedToHomePage()
-                .checkLinks();
+                ;
 
 
     }

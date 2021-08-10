@@ -1,6 +1,6 @@
 import org.testng.annotations.Test;
 import pageObjects.businessObjects.HomeBO;
-import pageObjects.businessObjects.ProductPO;
+import pageObjects.businessObjects.ProductBO;
 
 public class ProductPageTest extends BaseTest {
 
@@ -9,9 +9,9 @@ public class ProductPageTest extends BaseTest {
         new HomeBO()
                 .proceedToHomePage()
                 .proceedToProductPage();
-        new ProductPO()
+        new ProductBO()
                 .verifyTitleHandBugsIsVisible();
-        new ProductPO()
+        new ProductBO()
                 .validateSortingByName();
     }
 }

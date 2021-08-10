@@ -7,8 +7,7 @@ import pageObjects.*;
 import java.util.List;
 
 public class HomeBO {
-    private HomePage homePage;
-    private SignInPage signInPage;
+    private final HomePage homePage;
 
     public HomeBO() {
         homePage = new HomePage();
@@ -22,8 +21,7 @@ public class HomeBO {
     }
 
     public HomeBO proceedToHomePageAfterClickLogo() {
-        homePage.proceedToHomePage()
-                .clickCookiesDismiss()
+        homePage
                 .clickToLogoElement();
         return this;
     }
@@ -60,8 +58,7 @@ public class HomeBO {
         return new ContactUsPage();
     }
 
-    public List<WebElement> checkLinks() {
-        return homePage.getTextsAndLinksListBeforeSignIn();
-
+    public List<WebElement> getLinksBeforeSignIn() {
+           return homePage.getLinksListBeforeSignIn();
     }
 }

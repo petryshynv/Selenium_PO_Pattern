@@ -1,11 +1,13 @@
 package pageObjects.businessObjects;
 
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pageObjects.HomePage;
 import pageObjects.SignInPage;
 
+import java.util.List;
+
 public class SignInBO {
-    private SignInPage signInPage;
+    private final SignInPage signInPage;
 
     public SignInBO() {
         signInPage = new SignInPage();
@@ -17,22 +19,20 @@ public class SignInBO {
                 "text 'RegisteredCustomer' is not visible");
     }
 
-    public HomePage login(String email, String password) {
+    public SignInPage login(String email, String password) {
         signInPage.enterEmail(email)
                 .enterPassword(password)
                 .clickSignInButton();
-        return new HomePage();
-    }
-
-
-    public void verifyMyAccountIsVisible() {
-        Assert.assertTrue(signInPage.isMyAccountDisplayed(),
-                "text 'My Account' is not visible");
+        return new SignInPage();
     }
 
     public void verifyLoginErrorIsVisible() {
         Assert.assertTrue(signInPage.isLoginErrorMessageDisplayed(),
                 "text 'Login error' is not visible");
+    }
+
+    public List<WebElement> getLinksAfterLogin() {
+        return signInPage.getLinksListAfterSignIn();
     }
 
 }

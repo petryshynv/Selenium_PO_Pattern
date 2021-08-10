@@ -1,9 +1,11 @@
 import org.testng.annotations.Test;
+import pageObjects.businessObjects.BillingBO;
+import pageObjects.businessObjects.CompleteOrderPageBO;
 import pageObjects.businessObjects.HomeBO;
 import pageObjects.businessObjects.OrderBO;
 
 
-public class OrderPageTest extends BaseTest {
+public class CompleteOrderTest extends BaseTest {
 
     @Test(description = "Complete order of item from main page (Featured item)")
     public void completeOrderFromHomePage() {
@@ -13,12 +15,13 @@ public class OrderPageTest extends BaseTest {
                 .addFeaturedItemToCard()
                 .isReviewOrderDisplayed();
         new OrderBO()
-                .proceedToBillingInformation()
+                .proceedToBillingInformation();
+        new BillingBO()
                 .verifyBillingInfoTextIsVisible();
-        new OrderBO()
-                .fillBillingInformation();
-        new OrderBO()
-                .proceedToSubmitButton()
+        new BillingBO()
+                .fillBillingInformation()
+                .proceedToSubmitButton();
+        new CompleteOrderPageBO()
                 .verifyOrderCompletedTextIsVisible();
     }
 }
