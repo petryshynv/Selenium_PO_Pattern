@@ -3,6 +3,8 @@ package pageObjects.businessObjects;
 import org.testng.Assert;
 import pageObjects.ProductPage;
 
+import java.util.List;
+
 public class ProductBO {
     private final ProductPage productPage;
 
@@ -11,14 +13,22 @@ public class ProductBO {
     }
 
     public void verifyTitleHandBugsIsVisible() {
-        Assert.assertTrue(productPage.IsTitleDisplayed(),
-                "'HandBugs' is not visible");
+        Assert.assertTrue(productPage.isHandBugsVisible(),
+                "'Hand Bugs' is not visible");
     }
 
-    public ProductPage validateSortingByName() {
+    public void verifyTitleBeachBugsIsVisible() {
+        Assert.assertTrue(productPage.isBeachBugsVisible(),
+                "'Beach Bugs' is not visible");
+    }
+
+    public void validateSortingByName() {
         productPage
                 .selectByName()
                 .sortingByName();
-        return productPage;
+    }
+
+    public List<String> getItemUi() {
+        return productPage.getItemUiPart();
     }
 }

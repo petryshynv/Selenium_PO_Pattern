@@ -21,45 +21,23 @@ public class ContactUsBO {
     public ContactUsBO fillAllInformation() {
         contactUsPage.enterName(randomString(10))
                 .enterEmail(randomString(10)
-                            +"@"+ randomString(5)
-                            +"."+ randomString(3))
+                        + "@" + randomString(5)
+                        + "." + randomString(3))
                 .enterSubject(randomString(10))
                 .enterComment(randomString(50));
         return this;
     }
 
-    public ContactUsBO verifySendButtonWithEmptyFieldComment() {
+    public void verifySendButtonWithEmptyFieldComment() {
         contactUsPage.enterName(randomString(10))
                 .enterEmail(randomString(10)
-                        +"@"+ randomString(5)
-                        +"."+ randomString(3))
+                        + "@" + randomString(5)
+                        + "." + randomString(3))
                 .enterSubject(randomString(10));
         Assert.assertTrue(contactUsPage.getStatusFromAttribute());
-        return this;
     }
 
     public void verifyStatusSendButtonIfAllFieldFilled() {
-       Assert.assertFalse(contactUsPage.getStatusFromAttribute());
-
+        Assert.assertFalse(contactUsPage.getStatusFromAttribute());
     }
-
-//    public void verifyStatusSendButtonIfOneOfFieldIsEmpty() {
-//        SoftAssert softAssert = new SoftAssert();
-//        fillInformationExpectComment();
-//        softAssert.assertTrue(contactUsPage.getStatusFromAttribute());
-//        fillInformationExpectEmail();
-//        softAssert.assertTrue(contactUsPage.getStatusFromAttribute());
-//        fillInformationExpectSubject();
-//        softAssert.assertTrue(contactUsPage.getStatusFromAttribute());
-//        fillInformationExpectName();
-//        softAssert.assertTrue(contactUsPage.getStatusFromAttribute());
-//        softAssert.assertAll();
-//    }
-
-
-
-
-
-
-
 }

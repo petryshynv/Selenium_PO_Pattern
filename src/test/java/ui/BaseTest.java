@@ -1,3 +1,5 @@
+package ui;
+
 import driver.DriverFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

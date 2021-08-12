@@ -1,10 +1,13 @@
+package ui;
+
 import org.testng.annotations.Test;
 import pageObjects.businessObjects.ContactUsBO;
 import pageObjects.businessObjects.HomeBO;
 
 public class ContactUsPageTest extends BaseTest {
 
-    @Test(description = "Check that 'Contact us' form can be submitted only when all fields are filled")
+    @Test(description = "Check that 'Contact us' form can be submitted only when all fields are filled",
+            groups = "UITest")
     public void verifyContactUsWithAllFilledFields() {
         new HomeBO()
                 .proceedToHomePage()
@@ -16,7 +19,8 @@ public class ContactUsPageTest extends BaseTest {
                 .verifyStatusSendButtonIfAllFieldFilled();
     }
 
-    @Test(description = "Check that 'Contact us' form can be submitted only when one field is empty")
+    @Test(description = "Check that 'Contact us' form can be submitted only when one field is empty",
+            groups = "UITest")
     public void verifyContactUsWithSomeEmptyField() {
         new HomeBO()
                 .proceedToHomePage()

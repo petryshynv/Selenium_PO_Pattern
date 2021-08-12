@@ -28,8 +28,8 @@ public class BillingBO {
                 .selectState()
                 .enterPostalCode()
                 .enterEmail(randomString(10)
-                        +"@"+ randomString(5)
-                        +"."+ randomString(3))
+                        + "@" + randomString(5)
+                        + "." + randomString(3))
                 .enterPhone()
                 .verifySubmitButtonIsEnable();
         return this;

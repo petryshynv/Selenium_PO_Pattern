@@ -5,17 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-import static consts.DriversConfigs.waitersValue.EXPLICIT_WAIT_VALUE;
 
 
 public class AbstractPage {
 
-    private WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(),
-            EXPLICIT_WAIT_VALUE.getValue());
 
     AbstractPage() {
     }

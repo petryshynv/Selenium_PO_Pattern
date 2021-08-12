@@ -12,10 +12,9 @@ public class OrderPage extends AbstractPage {
 
     private final By textBillingInfo = By.xpath("//h3[normalize-space()='Billing information']");
 
-    public boolean isReviewOrderDisplayed() {
+    public void isReviewOrderDisplayed() {
         boolean isDisplayed = isDisplayed(reviewOrderElement);
         LOG.info(String.format("h1 'Review order' '%s'", isDisplayed));
-        return isDisplayed;
     }
 
     public OrderPage clickProceedButton() {

@@ -5,10 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
+
 
 public class ProductPage extends AbstractPage {
 
@@ -17,10 +16,18 @@ public class ProductPage extends AbstractPage {
     private final By titleHandBugsElement = By.xpath("//h1[@class='shop-banner-title lead']");
     private final By sortByMenuElement = By.xpath("//select[@class='cust-select']");
     private final By handBugElement = By.xpath("//div[@id='productsContainer']//h3[@itemprop='name']");
+    private final By beachBugElements = By.xpath("//div[@id='productsContainer']//h3[@itemprop='name']");
+    private final By titleBeachBugsElement = By.xpath("//h1[normalize-space()='Beach bags']");
 
-    public boolean IsTitleDisplayed() {
+    public boolean isHandBugsVisible() {
         boolean isDisplayed = isDisplayed(titleHandBugsElement);
         LOG.info(String.format("'HandBugs' is visible '%s'", isDisplayed));
+        return isDisplayed;
+    }
+
+    public boolean isBeachBugsVisible() {
+        boolean isDisplayed = isDisplayed(titleBeachBugsElement);
+        LOG.info(String.format("'Beach bugs' is visible '%s'", isDisplayed));
         return isDisplayed;
     }
 
@@ -48,5 +55,15 @@ public class ProductPage extends AbstractPage {
         }
         Collections.sort(sortedList);
         Assert.assertEquals(obtainedList, sortedList, "Sorting by name doesn't work");
+    }
+
+    public List<String>  getItemUiPart() {
+        ArrayList<String> obtainedList = new ArrayList<>();
+        List<WebElement> elementList = getElements(beachBugElements);
+        for (WebElement we : elementList) {
+            obtainedList.add(we.getText().toLowerCase(Locale.ROOT));
+        }
+        LOG.info("List of item names from API are got");
+        return obtainedList;
     }
 }

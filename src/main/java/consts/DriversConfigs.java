@@ -9,8 +9,8 @@ public class DriversConfigs {
         CHROME("webdriver.chrome.driver",
                 "src\\main\\resources\\chromedriver.exe");
 
-        private String property;
-        private String path;
+        private final String property;
+        private final String path;
 
         browsers(String property, String path) {
             this.property = property;
@@ -30,7 +30,7 @@ public class DriversConfigs {
         IMPLICIT_WAIT_VALUE(10),
         EXPLICIT_WAIT_VALUE(20);
 
-        private int value;
+        private final int value;
 
         waitersValue(int value) {
             this.value = value;

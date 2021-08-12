@@ -6,9 +6,10 @@ public class BusinessConfigs {
 
     public enum page {
 
-        HOME_PAGE_URL("http://167.71.33.250:8080/shop/");
+        HOME_PAGE_URL("http://167.71.33.250:8080/shop/"),
+        HOME_PAGE_API("http://167.71.33.250:8080");
 
-        private String url;
+        private final String url;
 
         page(String url) {
             this.url = url;
@@ -22,10 +23,9 @@ public class BusinessConfigs {
     public enum userInputs {
         EMAIL("petryshyn.v@gmail.com"),
         INCORRECT_EMAIL("petryshyn@gmail.com"),
-        PASSWORD("123456"),
-        INCORRECT_PASSWORD("111111");
+        PASSWORD("123456");
 
-        private String input;
+        private final String input;
 
         userInputs(String input) {
             this.input = input;

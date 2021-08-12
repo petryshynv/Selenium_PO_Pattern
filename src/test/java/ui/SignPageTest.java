@@ -1,18 +1,17 @@
-import org.testng.Assert;
+package ui;
+
 import org.testng.annotations.Test;
 import pageObjects.businessObjects.HomeBO;
 import pageObjects.businessObjects.MyAccountPageBO;
 import pageObjects.businessObjects.SignInBO;
 
-import static consts.BusinessConfigs.*;
-import static consts.BusinessConfigs.userInputs.*;
 import static consts.BusinessConfigs.userInputs.EMAIL;
 import static consts.BusinessConfigs.userInputs.INCORRECT_EMAIL;
 import static consts.BusinessConfigs.userInputs.PASSWORD;
 
 public class SignPageTest extends BaseTest {
 
-    @Test(description = "Login with correct email and password.")
+    @Test(description = "Login with correct email and password.", groups = "UITest")
     public void verifySignInPageWithCorrectInputs() {
         new HomeBO()
                 .proceedToHomePage()
@@ -25,7 +24,7 @@ public class SignPageTest extends BaseTest {
                 .verifyMyAccountIsVisible();
     }
 
-    @Test(description = "Login with correct invalid email")
+    @Test(description = "Login with correct invalid email", groups = "UITest")
     public void verifySignInPageWithIncorrectEmail() {
         new HomeBO()
                 .proceedToHomePage()
@@ -37,13 +36,4 @@ public class SignPageTest extends BaseTest {
         new SignInBO()
                 .verifyLoginErrorIsVisible();
     }
-
-    @Test(description = "Negative scenario")
-    public void test() {
-        new HomeBO()
-                .proceedToHomePage()
-                ;
-
-
-    }
-}
+ }

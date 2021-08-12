@@ -33,8 +33,7 @@ public class HomeBO {
 
     public SignInPage proceedToSignInPage() {
         homePage.scrollToMyAccount()
-                .clickSignIn()
-        ;
+                .clickSignIn();
         return new SignInPage();
     }
 
@@ -53,12 +52,18 @@ public class HomeBO {
         return new ProductPage();
     }
 
+    public ProductPage proceedToProductBeachBugsPage() {
+        homePage
+                .clickToProducts().clickBeachBugs();
+        return new ProductPage();
+    }
+
     public ContactUsPage proceedToContactUsPage() {
         homePage.clickContactUsButton();
         return new ContactUsPage();
     }
 
     public List<WebElement> getLinksBeforeSignIn() {
-           return homePage.getLinksListBeforeSignIn();
+        return homePage.getLinksListBeforeSignIn();
     }
 }

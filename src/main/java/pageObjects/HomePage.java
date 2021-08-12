@@ -21,6 +21,7 @@ public class HomePage extends AbstractPage {
 
     private final By productElement = By.xpath("//a[contains(text(),'Products')]");
     private final By handBugsElement = By.xpath("//a[contains(text(),'Handbags')]");
+    private final By beachBugDropMenuElement = By.xpath("//ul[@class='dropdown-menu row']//a[contains(text(),'Beach bags')]");
 
     private final By featuredItemAddToCartElement = By.xpath("//a[@productid='1']");
     private final By shoppingCartOnHomePageElement = By.xpath("//nav[@class='topBar']//li[3]");
@@ -48,10 +49,9 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage clickToLogoElement() {
+    public void clickToLogoElement() {
         getElement(logoElement).click();
         LOG.info("Logo Element is clicked");
-        return this;
     }
 
     public boolean isLogoDisplayed() {
@@ -68,11 +68,10 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage clickSignIn() {
+    public void clickSignIn() {
         JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
         executor.executeScript("arguments[0].click();", getElement(signInElement));
         LOG.info("'Sign In' is clicked");
-        return this;
     }
 
     public HomePage scrollToAddToCart() {
@@ -94,11 +93,10 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage clickCheckout() {
+    public void clickCheckout() {
         JavascriptExecutor executor = (JavascriptExecutor) DriverFactory.getDriver();
         executor.executeScript("arguments[0].click();", getElement(checkoutElement));
         LOG.info("'Checkout' is clicked");
-        return this;
     }
 
     public HomePage clickToProducts() {
@@ -107,16 +105,19 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public ProductPage clickHandBugs() {
-        actions.moveToElement(getElement(handBugsElement)).click().build().perform();
-        LOG.info("'HandBugs' is clicked");
-        return new ProductPage();
+    public void clickBeachBugs() {
+        actions.moveToElement(getElement(beachBugDropMenuElement)).click().build().perform();
+        LOG.info("'Beach bugs' is clicked");
     }
 
-    public HomePage clickContactUsButton() {
+    public void clickHandBugs() {
+        actions.moveToElement(getElement(handBugsElement)).click().build().perform();
+        LOG.info("'HandBugs' is clicked");
+    }
+
+    public void clickContactUsButton() {
         actions.moveToElement(getElement(contactUsElement)).click().build().perform();
         LOG.info("'ContactUs' is clicked");
-        return this;
     }
 
     public List<WebElement> getLinksListBeforeSignIn() {
